@@ -54,18 +54,6 @@ def protein_extract(hela_listan,start,stop):
 
 
 
-def aa_count(start_slut,dictionary):
-    dictionary = {'ATG':'M','TTT':'F','TTC':'F','GTC':'V','GTG':'V','AAC':'N','TAT':'Y'}
-    gen = start_slut
-    ny_gen = [dictionary.get(i,i) for i in gen]
-    print(ny_gen)
-    antal_M = ny_gen.count("M")
-    antal_V = ny_gen.count("V")
-    antal_F = ny_gen.count("F")
-    antal_N = ny_gen.count("N")
-    antal_Y = ny_gen.count("Y")
-    print("M:",antal_M,"V:",antal_V,"F:",antal_F,"N:",antal_N,"Y:",antal_Y)
-        
      
         
 
