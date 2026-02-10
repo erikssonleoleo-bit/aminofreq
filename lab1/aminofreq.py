@@ -35,10 +35,12 @@ def helper(hela_listan,start,stop):
 
 def protein_extract(hela_listan,start,stop):
     lista = [helper(hela_listan,start,stop)]
+    print("test 3", lista)
     plats_1_tuple = lista[0]
     plats_2_tuple = lista[-1]
     plats_1 = plats_1_tuple[0]
     plats_2 = plats_2_tuple[-1]
+    print("test 2", plats_1, plats_2)
     if "A" == plats_1 or "A" == plats_2:
         ny_lista = []
     else:
@@ -63,5 +65,7 @@ def a_count(start_slut,dic):
     gen = start_slut
     for i in dic:
         print (dic[i])
+print("Test:",protein_extract(['TAG', 'ATG', 'TAG'], ['ATG'], ['TAA', 'TAG']))
+
 
 
