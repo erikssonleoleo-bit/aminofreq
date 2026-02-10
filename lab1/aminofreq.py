@@ -17,13 +17,13 @@ def helper(hela_listan,start,stop):
         Finns_Stop = False
         if i in start:
             Finns_Start = True
-        if i in stop:
-            Finns_Stop = True
-        if Finns_Start:
-            plats_start = hela_listan.index(i)
-        if Finns_Stop:
-            plats_stop = hela_listan.index(i) + 1
-            break
+            if Finns_Start:
+                plats_start = hela_listan.index(i)
+                if i in stop:
+                    Finns_Stop = True
+                if Finns_Stop:
+                    plats_stop = hela_listan.index(i) + 1
+                    break
     return plats_start , plats_stop
 
 
