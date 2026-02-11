@@ -36,12 +36,12 @@ def helper(hela_listan,start,stop):
 
 def protein_extract(hela_listan,start,stop):
     lista = [helper(hela_listan,start,stop)]
-    print("test 3", lista)
+        # print("test 3", lista)
     plats_1_tuple = lista[0]
     plats_2_tuple = lista[-1]
     plats_1 = plats_1_tuple[0]
     plats_2 = plats_2_tuple[-1]
-    print("test 2", plats_1, plats_2)
+        # print("test 2", plats_1, plats_2)
     if "A" == plats_1 or "A" == plats_2:
         ny_lista = []
     else:
@@ -66,16 +66,45 @@ def aa_count(codons, genetic_code):
 
 
 
-     
+
+def read_dna(string_name, filename):
+    antal = 0
+    slut_rad = 0
+    listan = []
+    with open(filename, 'r') as file:
+        rader = file.readlines()
+        print(rader)
+        for k in rader:
+            element = k.strip('> \n')
+            listan.append(element)
+        print("Listan: ", listan)
+        if not string_name in listan:
+            Svar = "''"
+            print("Svar_om_fel", Svar)
+        else:
+            for i, rad in enumerate(rader):
+                stop_rad = i
+                if rad.strip('> \n') == string_name:
+                    start_rad = i+1
+                if rad.startswith(">"):
+                    antal += 1
+                    print("Antal: ", antal)                
+                if antal == 2:
+                    break
+
+            Svar = ''.join(listan[start_rad:stop_rad])
+            print("Start värdet: ", start_rad)
+            print("Stop värdet: ", stop_rad)
+            print("Svar: ", Svar)
+            return Svar
         
 
 
 
-def a_count(codons,genetic_code):
-    gen = start_slut
-    for i in dic:
-        print (dic[i])
-print("Test:",protein_extract(['TAG', 'ATG', 'TAG'], ['ATG'], ['TAA', 'TAG']))
+
+
+    
 
 
 
+read_dna('sequence2','examples/example1.fna')
