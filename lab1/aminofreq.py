@@ -12,24 +12,25 @@ def codons_extract(dna,n):
 def helper(hela_listan,start,stop):
     plats_start = "A"
     plats_stop = "A"
-    for i in hela_listan:
-        Finns_Start = False
-        Finns_Stop = False
-        if i in start:
+    Finns_Start = False
+    Finns_Stop = False
+    for i in range(len(hela_listan)):
+        if hela_listan[i] in start:
             Finns_Start = True
-            if Finns_Start:
-                plats_start = hela_listan.index(i)
-                if i in stop:
-                    Finns_Stop = True
-                if Finns_Stop:
-                    plats_stop = hela_listan.index(i) + 1
-                    break
-    return plats_start , plats_stop
-
-
-
-
-
+            plats_start=i
+            break
+    if not Finns_Start:
+        return plats_start , plats_stop
+                
+    for j in range(plats_start +1, len(hela_listan)):
+            if hela_listan[j] in stop:
+                Finns_Stop = True
+                plats_stop = j
+                break
+    if not Finns_Stop:
+        return "A", "A"
+    return plats_start, plats_stop
+    
 
 
 
@@ -44,7 +45,7 @@ def protein_extract(hela_listan,start,stop):
     if "A" == plats_1 or "A" == plats_2:
         ny_lista = []
     else:
-        ny_lista = hela_listan[plats_1 : plats_2]
+        ny_lista = hela_listan[plats_1 : plats_2+1]
     return ny_lista
 
 
