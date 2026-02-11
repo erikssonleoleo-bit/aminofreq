@@ -49,7 +49,16 @@ def protein_extract(hela_listan,start,stop):
     return ny_lista
 
 
-
+def aa_count(codons, genetic_code):
+    counts={}
+    for c in codons:
+        if c in genetic_code:
+            aa=genetic_code[c]
+            if aa in counts:
+                counts[aa]=counts[aa]+1
+            else:
+                counts[aa]=1
+    return counts
 
 
 
@@ -62,7 +71,7 @@ def protein_extract(hela_listan,start,stop):
 
 
 
-def a_count(start_slut,dic):
+def a_count(codons,genetic_code):
     gen = start_slut
     for i in dic:
         print (dic[i])
