@@ -64,30 +64,68 @@ def aa_count(codons, genetic_code):
 
 
 
+#rader = file.readlines()
 
 
-
-def read_dna(string_name, filename):
-    antal = 0
-    listan = []
-    lista_1 = []
+#def read_dna1(string_name, filename):
+    Ihop = ""
     Hittad = False
     with open(filename, 'r') as file:
         rader = file.readlines()
-        print(rader)
-        for k in rader:
-            k = k.strip()
-            if '>' + string_name == k:
+        print("Rader: ", rader)
+        for rad in file:
+        #for k in rader:
+            rad = rad.strip()
+            #print("Rad: ", rad)
+            if '>' + string_name +'\n' in rader:
                 Hittad = True
+                rad = next(file)
+                print("Hittad = True")
             if Hittad:
-                lista_1.append(k)
-                if k.startswith('>'):
-                    pass
-        if not Hittad:
-            print("''")
+                if rad.startswith('>'):
+                    print("Breakar_första")
+                    break
+                else:            
+                    Ihop += rad
+                    if rad.startswith('>'):
+                        print("Breakar_andra")
+                        break
+            if not Hittad:
+                print("If not Hittad", "'  '")
+    #print("Ihop_1: ", Ihop)
+    Stora = Ihop.upper()
+    print("Svar: ", Stora)
 
-    print("Lista 1: ", lista_1)
 
+def read_dna(string_name, filename):
+    Ihop = ""
+    Hittad = False
+    identifier = '>'+ string_name
+    with open(filename, 'r') as file:
+        rader = file.readlines()
+        for i, rad in enumerate(rader):
+            if rad.startswith(identifier):
+                Hittad = True
+                #print("Hittad är True")
+            if Hittad:
+                if i+1 >= len(rader):
+                    break
+                rad = rader[i+1]
+                rad.strip()
+                if rad.startswith('>'):
+                    #print("Break rad starts with >")
+                    break
+                Ihop += rad
+                    #print("Vi kom till Ihop: ", Ihop)
+            if not Hittad:
+                print("If not Hittad: ", "''")
+    Stora = Ihop.upper()
+    Svar = Stora.replace("\n","")
+    print("Svar: ", Svar)
+    
+
+
+ 
 
 
 
@@ -103,4 +141,4 @@ def read_dna(string_name, filename):
 
 
 
-read_dna('sequence2','examples/example1.fna')
+read_dna('sequence1','examples/example1.fna')
