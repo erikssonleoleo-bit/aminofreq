@@ -107,4 +107,4 @@ def read_dna(string_name, filename):
 
 
 
-read_dna('sequence2','examples/example1.fna')
+read_dna('sequence1','examples/example1.fna')
