@@ -70,33 +70,29 @@ def aa_count(codons, genetic_code):
 def read_dna(string_name, filename):
     antal = 0
     listan = []
+    lista_1 = []
+    Hittad = False
     with open(filename, 'r') as file:
         rader = file.readlines()
-        #print(rader)
+        print(rader)
         for k in rader:
             k = k.strip()
-            element = k.strip('> \n')
-            listan.append(element)
-        #print("Listan: ", listan)
-        if not string_name in listan:
-            Svar = "''"
-            #print("Svar_om_fel", Svar)
-        else:
-            for i, rad in enumerate(rader):
-                stop_rad = i
-                if rad.strip('> \n') == string_name:
-                    start_rad = i+1
-                if rad.startswith(">"):
-                    antal += 1
-                    #print("Antal: ", antal)                
-                if antal == 2:
-                    break
+            if '>' + string_name == k:
+                Hittad = True
+            if Hittad:
+                lista_1.append(k)
+                if k.startswith('>'):
+                    pass
+        if not Hittad:
+            print("''")
 
-            Svar = ''.join(listan[start_rad:stop_rad])
-            print("Start värdet: ", start_rad)
-            print("Stop värdet: ", stop_rad)
-            print("Svar: ", Svar)
-            return Svar
+    print("Lista 1: ", lista_1)
+
+
+
+
+
+
         
 
 
@@ -107,4 +103,4 @@ def read_dna(string_name, filename):
 
 
 
-read_dna('sequence1','examples/example1.fna')
+read_dna('sequence2','examples/example1.fna')
