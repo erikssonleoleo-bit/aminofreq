@@ -69,18 +69,18 @@ def aa_count(codons, genetic_code):
 
 def read_dna(string_name, filename):
     antal = 0
-    slut_rad = 0
     listan = []
     with open(filename, 'r') as file:
         rader = file.readlines()
-        print(rader)
+        #print(rader)
         for k in rader:
+            k = k.strip()
             element = k.strip('> \n')
             listan.append(element)
-        print("Listan: ", listan)
+        #print("Listan: ", listan)
         if not string_name in listan:
             Svar = "''"
-            print("Svar_om_fel", Svar)
+            #print("Svar_om_fel", Svar)
         else:
             for i, rad in enumerate(rader):
                 stop_rad = i
@@ -88,7 +88,7 @@ def read_dna(string_name, filename):
                     start_rad = i+1
                 if rad.startswith(">"):
                     antal += 1
-                    print("Antal: ", antal)                
+                    #print("Antal: ", antal)                
                 if antal == 2:
                     break
 
