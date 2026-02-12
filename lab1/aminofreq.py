@@ -106,22 +106,20 @@ def read_dna(string_name, filename):
         for i, rad in enumerate(rader):
             if rad.startswith(identifier):
                 Hittad = True
-                #print("Hittad är True")
             if Hittad:
                 if i+1 >= len(rader):
                     break
                 rad = rader[i+1]
                 rad.strip()
                 if rad.startswith('>'):
-                    #print("Break rad starts with >")
                     break
                 Ihop += rad
-                    #print("Vi kom till Ihop: ", Ihop)
-            if not Hittad:
-                print("If not Hittad: ", "''")
+        if not Hittad:
+                print("''")
     Stora = Ihop.upper()
     Svar = Stora.replace("\n","")
-    print("Svar: ", Svar)
+    print("Svar", Svar)
+    return Svar
     
 
 
@@ -141,4 +139,4 @@ def read_dna(string_name, filename):
 
 
 
-read_dna('sequence1','examples/example1.fna')
+read_dna('sequence2','examples/example1.fna')
