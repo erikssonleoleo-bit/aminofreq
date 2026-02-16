@@ -66,7 +66,7 @@ def aa_count(codons, genetic_code):
 
 
 def read_dna(string_name, filename):
-    Ihop = ""
+    Svar = ""
     Hittad = False
     identifier = '>'+ string_name
     with open(filename, 'r') as file:
@@ -81,11 +81,11 @@ def read_dna(string_name, filename):
             rad.strip()
             if rad.startswith('>'):
                 break
-            Ihop += rad
+            Svar += rad
     if not Hittad:
         Svar = ""
-    Stora = Ihop.upper()
-    Svar = Stora.replace("\n","")
+    Svar = Svar.upper()
+    Svar = Svar.replace("\n","")
     return Svar
     
 
