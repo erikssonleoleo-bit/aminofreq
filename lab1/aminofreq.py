@@ -36,12 +36,10 @@ def helper(hela_listan,start,stop):
 
 def protein_extract(hela_listan,start,stop):
     lista = [helper(hela_listan,start,stop)]
-        # print("test 3", lista)
     plats_1_tuple = lista[0]
     plats_2_tuple = lista[-1]
     plats_1 = plats_1_tuple[0]
     plats_2 = plats_2_tuple[-1]
-        # print("test 2", plats_1, plats_2)
     if "A" == plats_1 or "A" == plats_2:
         ny_lista = []
     else:
@@ -64,37 +62,7 @@ def aa_count(codons, genetic_code):
 
 
 
-#rader = file.readlines()
 
-
-#def read_dna1(string_name, filename):
-    Ihop = ""
-    Hittad = False
-    with open(filename, 'r') as file:
-        rader = file.readlines()
-        print("Rader: ", rader)
-        for rad in file:
-        #for k in rader:
-            rad = rad.strip()
-            #print("Rad: ", rad)
-            if '>' + string_name +'\n' in rader:
-                Hittad = True
-                rad = next(file)
-                print("Hittad = True")
-            if Hittad:
-                if rad.startswith('>'):
-                    print("Breakar_första")
-                    break
-                else:            
-                    Ihop += rad
-                    if rad.startswith('>'):
-                        print("Breakar_andra")
-                        break
-            if not Hittad:
-                print("If not Hittad", "'  '")
-    #print("Ihop_1: ", Ihop)
-    Stora = Ihop.upper()
-    print("Svar: ", Stora)
 
 
 def read_dna(string_name, filename):
@@ -103,27 +71,46 @@ def read_dna(string_name, filename):
     identifier = '>'+ string_name
     with open(filename, 'r') as file:
         rader = file.readlines()
-        for i, rad in enumerate(rader):
-            if rad.startswith(identifier):
-                Hittad = True
-            if Hittad:
-                if i+1 >= len(rader):
-                    break
-                rad = rader[i+1]
-                rad.strip()
-                if rad.startswith('>'):
-                    break
-                Ihop += rad
-        if not Hittad:
-                print("''")
+    for i, rad in enumerate(rader):
+        if rad.startswith(identifier):
+            Hittad = True
+        if Hittad:
+            if i+1 >= len(rader):
+                break
+            rad = rader[i+1]
+            rad.strip()
+            if rad.startswith('>'):
+                break
+            Ihop += rad
+    if not Hittad:
+        Svar = ""
     Stora = Ihop.upper()
     Svar = Stora.replace("\n","")
-    print("Svar", Svar)
     return Svar
     
 
+def composition(string_name, filename,genetic_code , start, stop):
 
- 
+    for n in range(3):
+        Hela_DNA_sequence = read_dna(string_name, filename)
+        Uppdelat_DNA = codons_extract(Hela_DNA_sequence, n)
+        DNA_sequence = protein_extract(Uppdelat_DNA, start, stop)
+        Dict_med_antal = aa_count(DNA_sequence, genetic_code)
+        if Hela_DNA_sequence == '':
+            print('Error: the sequence is not in the file')
+            break
+        elif len(DNA_sequence) == 0:
+            print(f"Frame {n}: no valid protein")
+        else:
+            print(f"Frame {n}:\nprotein: {DNA_sequence}\namino acid count: {Dict_med_antal}")
+
+
+
+
+
+
+
+
 
 
 
@@ -139,4 +126,3 @@ def read_dna(string_name, filename):
 
 
 
-read_dna('sequence2','examples/example1.fna')
