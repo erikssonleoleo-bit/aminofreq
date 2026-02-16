@@ -1,53 +1,37 @@
 import math
 
-# Task (2/12): Define a class Vec
 class Vec:
-    def__init__(self, x, y):
-    self.x=x
-    self.y=y
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-def __repr__(self):
-   return f"({self.x}, {self.y})"
-
-def __rmul__(self, factor):
-
-def __add__(self, other):
-   x1=self.x
-   y1=self.y
-
-   x2=other.x
-   y2=other.y
-   return Vec(x1+x2, y1+y2)
-
-def __sub__(self, other):
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
 
 
- is defined as 
-.
+    def __rmul__(self, factor):
+        return Vec(self.x * factor, self.y * factor)
+    
+    def __mul__(self, factor):
+        return self.__rmul__(factor)
 
-get_coords(self)
-return the coordinates of self as the tuple (x,y).#
-# Task (3/12): Additionally define a function dot(u, v)
+    def __add__(self, other):
+        return Vec(self.x + other.x, self.y + other.y)
 
-# Task (4/12): Create a class Particle
+    def __sub__(self, other):
+        return Vec(self.x - other.x, self.y - other.y)
 
-# Task (5/12): In the Particle class, implement a method inertial_move(self, dt).
+    def norm(self):
+        return math.sqrt(self.x**2 + self.y**2)
 
-# Task (6/12): In the Particle class, implement a method apply_force(self, dt, f)
+def dot(u, v):
+    return u.x * v.x + u.y * v.y
 
-##########################################
-### NB. Tasks 7–8 are done in view.py. ###
-##########################################
-
-
-# Task (9/12): In the Particle class, add a method bounding_box(self)
-
-
-
-
-
-
-###########################################
-### When you're done with all 12 tasks: ###
-### forces/other features in this file! ###
-###########################################
+class Particle:
+    def __init__(self, m, p, v, r):
+        self.mass = m
+        self.position = p  
+        self.velocity = v  
+        self.radius = r
+u=Vec(5,2)
+v=Vec(1,1)
