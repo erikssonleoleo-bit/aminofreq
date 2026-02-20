@@ -33,5 +33,22 @@ class Particle:
         self.position = p  
         self.velocity = v  
         self.radius = r
+    def inertial_move(self, dt):
+        self.position = dt*self.velocity+self.position
+    
+    def apply_force(self,dt,f):
+        a=(1/self.mass)*f
+        self.velocity= dt*a+self.velocity
+
+    def __repr__(self):
+        return f"velocity: {self.velocity}"
+    
+
+
+
+
+
+
+p=Particle(2,u,v,0.2)
 u=Vec(5,2)
 v=Vec(1,1)
