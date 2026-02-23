@@ -6,7 +6,7 @@ import time
 root = Tk()
 canvas = Canvas(root, bg="white",width=800, height=600)
 canvas.pack()
-#o = canvas.create_oval(80, 30, 140, 150, fill="blue")
+o = canvas.create_oval(80, 30, 140, 150, fill="blue")
 
 input()
 
@@ -25,11 +25,10 @@ def to_canvas_coords(canvas, x):
 # Task (10/12): Define a new function move_oval_to(o, u1, u2)
 
 def move_oval(o, u1, u2):
-    u1 = self.to_canvas_coords(canvas, u1)
-    u2 = self.to_canvas_coords(canvas, u2)
-    (x1, y1), (x2, y2) = Particle(bounding_box())
-    o = canvas.create_oval(x1, y1, x2, y2,  fill = "blue")
-
+    c1 = to_canvas_coords(canvas, u1)
+    c2 = to_canvas_coords(canvas, u2)
+    canvas.coords(o, c1.x, c1.y, c2.x, c2.y)
+    canvas.update()
 # Task (11/12): Define a new function create_oval(canvas, particle)
 
 # Task (12/12): Define a function simulation_loop(f, timestep, particles
