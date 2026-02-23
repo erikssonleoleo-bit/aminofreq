@@ -1,5 +1,3 @@
-# Task 7/12
-
 from tkinter import *
 from model import *
 import time 
@@ -14,7 +12,7 @@ input()
 
 def to_canvas_coords(canvas, x):
     h = canvas.winfo_reqheight()
-    w = canvas.winfo_reqwitfh()
+    w = canvas.winfo_reqwidth()
     scale = h / 20
     can_x = w / 2 + x.x * scale
     can_y = h / 2 - x.y * scale
@@ -30,5 +28,11 @@ def move_oval(o, u1, u2):
     canvas.coords(o, c1.x, c1.y, c2.x, c2.y)
     canvas.update()
 # Task (11/12): Define a new function create_oval(canvas, particle)
+## Temporary test—remove for final submission! ##
+#for n in range(5):
+ #particle = Particle(0, Vec(n,n), Vec(0,0), 0.2)
+  #create_oval(canvas, particle)
+  #canvas.update()
+ # time.sleep(1)
 
-# Task (12/12): Define a function simulation_loop(f, timestep, particles
+# Task (12/12): Define a function simulation_loop(f, timestep, particles)
