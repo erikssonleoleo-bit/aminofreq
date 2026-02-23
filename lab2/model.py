@@ -42,7 +42,12 @@ class Particle:
       self.velocity= dt*a+self.velocity
 
    def __repr__(self):
-      return f"velocity: {self.velocity}"
+      return f"velocity:{self.velocity}"
+   
+   def bounding_box(self):
+      v_nere = Vec(self.position.x + self.radius, self.position.y - self.radius)
+      v_uppe = Vec(self.position.x - self.radius, self.position.y + self.radius)
+      return v_uppe, v_nere
     
 
 
