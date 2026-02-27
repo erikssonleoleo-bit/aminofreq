@@ -6,7 +6,7 @@ class Vec:
       self.y = y
 
    def __repr__(self):
-     return f"({self.x}, {self.y})"
+     return f"({self.x},{self.y})"
 
 
    def __rmul__(self, factor):
