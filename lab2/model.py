@@ -48,9 +48,9 @@ class Particle:
       return f"velocity:{self.velocity}"
    
    def bounding_box(self):
-      v_nere = Vec(self.position.x + self.radius, self.position.y - self.radius)
+      h_nere = Vec(self.position.x + self.radius, self.position.y - self.radius)
       v_uppe = Vec(self.position.x - self.radius, self.position.y + self.radius)
-      return v_uppe, v_nere
+      return v_uppe, h_nere
     
 
 
