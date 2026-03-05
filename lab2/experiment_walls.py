@@ -1,10 +1,10 @@
 from view import*
 from model import*
-from math import
+from math import*
 
 n = 20
 particles = []
-for i in range(n)
+for i in range(n):
     theta = i*2*math.pi/n
     u = Vec(math.cos(theta),math.sin(theta))
     pos = 10 * u
@@ -32,4 +32,4 @@ def combined_walls(dt, particles):
     # Ankarpunkt på x = 10. Normalvektorn pekar åt VÄNSTER (-1, 0) in mot mitten.
     wall_force(dt, particles, k, Vec(-1, 0), Vec(10, 0))
 
-simulation_loop(combined_walls, )
+simulation_loop(combined_walls, 0.00005, particles)

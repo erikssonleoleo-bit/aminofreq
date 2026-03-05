@@ -55,7 +55,7 @@ class Particle:
 
 def wall_force(dt, particles, k, n, a):
     for p in particles:
-        x = p.get_coords()
+        x = p.position
         d = dot((x-a), n)
         if d < 0:
             force = -k*d*n 
