@@ -23,8 +23,11 @@ class Vec:
 
    def norm(self):
         return math.sqrt(self.x**2 + self.y**2)
+   
+   def get_coords(self):
+      return (self.x,self.y)
 
-   def dot(u, v):
+def dot(u, v):
       return u.x * v.x + u.y * v.y
 
 class Particle:

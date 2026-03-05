@@ -37,7 +37,7 @@ def create_oval(canvas, particle):
 ## Temporary test—remove for final submission! ##
 for n in range(5):
     particle = Particle(0, Vec(n,n), Vec(0,0), 0.2)
-    create_oval(canvas, particAle)
+    create_oval(canvas, partice)
     canvas.update()
     time.sleep(1)
 
