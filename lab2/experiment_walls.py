@@ -1,6 +1,6 @@
 from view import*
 from model import*
-from math import
+import math
 
 n = 20
 particles = []
