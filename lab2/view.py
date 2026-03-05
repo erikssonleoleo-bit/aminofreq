@@ -6,7 +6,7 @@ canvas = Canvas(root, bg="white",width=800, height=600)
 canvas.pack()
 #o = canvas.create_oval(80, 30, 140, 150, fill="blue")
 
-input()
+
 
 # Task (8/12): Define a new function to_canvas_coords(canvas, x)
 
@@ -39,36 +39,53 @@ def create_oval(canvas, particle):
 ## Temporary test—remove for final submission! ##
 for n in range(5):
     particle = Particle(0, Vec(n,n), Vec(0,0), 0.2)
-    create_oval(canvas, partice)
+    create_oval(canvas, particle)
     canvas.update()
     time.sleep(1)
 
 # Task (12/12): Define a function simulation_loop(f, timestep, particles)
+import time # (Kontrollera att denna finns med i toppen av filen)
+
+import time
+
 def simulation_loop(f, timestep, particles):
-    # Set up one graphical object (oval) for each particle
+    # Skapa ett grafiskt objekt (oval) för varje partikel och spara i en lista
     ovals = []
     for p in particles:
         ovals.append(create_oval(canvas, p))
         
-    # Repeat the following steps in an infinite loop
+    # Spara tiden innan loopen startar och sätt intervallet till 1/30 sekund
+    last_update = time.time()
+    update_interval = 1.0 / 30.0 
+        
+    # Oändlig loop som driver hela simuleringen
     while True:
-        # 1. call f(timestep, particles)
+        # 1. Applicera krafter på alla partiklar
         f(timestep, particles)
         
-        # 2 & 3. Move the particle and move the oval
-        for i in range(len(particles)):
-            p = particles[i]
-            o = ovals[i]
-            
-            # 2. move the particle according to the inertial Newton law
+        # 2. Flytta partiklarna enligt Newtons lagar (fysikuppdatering)
+        for p in particles:
             p.inertial_move(timestep)
             
-            # 3. move each oval to the new position of the particle
-            u1, u2 = p.bounding_box()
-            move_oval(o, u1, u2)
-            
-        # At the end of step 3, update the canvas
-        canvas.update()
+        # Kolla vad klockan är just nu
+        current_time = time.time()
         
-        # (Optional) Add a slight delay so the animation runs smoothly 
-        # time.sleep(timestep)
+        # 3. Uppdatera grafiken endast om det har gått minst 1/30 sekund
+        if current_time - last_update >= update_interval:
+            
+            # Gå igenom alla partiklar och deras motsvarande grafiska ovaler
+            for i in range(len(particles)):
+                p = particles[i]
+                o = ovals[i]
+                
+                # Hämta den nya begränsningsboxen (bounding box) för partikeln
+                u1, u2 = p.bounding_box()
+                
+                # Flytta ovalen på skärmen
+                move_oval(o, u1, u2)
+                
+            # Rita om canvasen
+            canvas.update()
+            
+            # Återställ klockan för att börja räkna ner till nästa bilduppdatering
+            last_update = current_time
