@@ -51,13 +51,13 @@ class Particle:
       h_nere = Vec(self.position.x + self.radius, self.position.y - self.radius)
       v_uppe = Vec(self.position.x - self.radius, self.position.y + self.radius)
       return v_uppe, h_nere
+   
+
+def wall_force(dt, particles, k, n, a):
+    for p in particles:
+        x = p.get_coords()
+        d = dot((x-a), n)
+        if d < 0:
+            force = -k*d*n 
+            p.apply_force(dt, force)
     
-
-
-
-
-
-
-#Particle(2,u,v,0.2)
-#u = Vec(5,2)
-#v = Vec(1,1)
